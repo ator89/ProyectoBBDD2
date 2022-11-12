@@ -15,10 +15,8 @@ public class CubridStartup {
         System.out.println("Ingrese password DB: ");
         String passwordDBUsr = sc.next();
         CUBRIDConnection conn = ConnectionDB.getCUBRIDConnection(usuarioDB,passwordDBUsr);
-        //String database = "jdbc:cubrid:localhost:30000:testing01:::?charset=UTF-8";
-        String driver = "cubrid.jdbc.driver.CUBRIDDriver";
-            
-                
+          
+         
         System.out.println("Ingrese id: ");
         int id_usuario = sc.nextInt();
         
@@ -29,8 +27,6 @@ public class CubridStartup {
         String apellido = sc.next();
         
         try{
-            Class.forName(driver);
-            //conn = DriverManager.getConnection(database);
             String sql="INSERT INTO usuarios(id_usuario, nombre, apellido) VALUES (?, ?, ?)";
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
