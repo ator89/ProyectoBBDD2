@@ -5,7 +5,7 @@ import cubrid.jdbc.driver.CUBRIDConnection;
 
 import java.sql.*;
 
-public class ShardConnection {
+public class ConnectionDB {
 	static  {
 		try {
 			Class.forName("cubrid.jdbc.driver.CUBRIDDriver");

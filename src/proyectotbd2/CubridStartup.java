@@ -14,7 +14,7 @@ public class CubridStartup {
         String usuarioDB = sc.next();
         System.out.println("Ingrese password DB: ");
         String passwordDBUsr = sc.next();
-        CUBRIDConnection conn = ShardConnection.getCUBRIDConnection(usuarioDB,passwordDBUsr);
+        CUBRIDConnection conn = ConnectionDB.getCUBRIDConnection(usuarioDB,passwordDBUsr);
         //String database = "jdbc:cubrid:localhost:30000:testing01:::?charset=UTF-8";
         String driver = "cubrid.jdbc.driver.CUBRIDDriver";
             
