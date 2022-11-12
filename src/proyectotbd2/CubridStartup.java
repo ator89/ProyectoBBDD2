@@ -14,9 +14,9 @@ public class CubridStartup {
         String usuarioDB = sc.next();
         System.out.println("Ingrese password DB: ");
         String passwordDBUsr = sc.next();
+        
         CUBRIDConnection conn = ConnectionDB.getCUBRIDConnection(usuarioDB,passwordDBUsr);
-          
-         
+        
         System.out.println("Ingrese id: ");
         int id_usuario = sc.nextInt();
         
@@ -30,7 +30,7 @@ public class CubridStartup {
             String sql="INSERT INTO usuarios(id_usuario, nombre, apellido) VALUES (?, ?, ?)";
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
-        
+            
             pstmt.setInt(1, id_usuario);
             pstmt.setString(2, nombre);
             pstmt.setString(3, apellido);
