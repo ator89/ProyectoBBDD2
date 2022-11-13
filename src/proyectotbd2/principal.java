@@ -260,16 +260,31 @@ public class principal extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "DB Username"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         btn_users_listar.setText("Listar");
         btn_users_listar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -416,7 +431,7 @@ public class principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
-        //
+        //ingresar a la base de datos 
         
         String database = tf_login_database.getText();
         String port = tf_login_port.getText();
@@ -438,6 +453,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_loginMouseClicked
 
     private void jmi_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_loginActionPerformed
+        //mostrar ventana Login 
         jd_login.setModal(true);
         jd_login.pack();
         jd_login.setLocationRelativeTo(this);
@@ -446,6 +462,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_loginActionPerformed
 
     private void jmi_usuariosbdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_usuariosbdActionPerformed
+        //mostrar ventana de administración de usuarios
         jd_users.setModal(true);
         jd_users.pack();
         jd_users.setLocationRelativeTo(this);
@@ -453,22 +470,22 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_usuariosbdActionPerformed
 
     private void btn_users_listarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_users_listarMouseClicked
+        //listar usuarios de base de datos
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);//limpiar tabla nuevamente
         
         try {
             CUBRIDConnection conn = ConnectionDB.getCUBRIDConnection("testing01","30000","dba","testing01.,");
-            
             Statement st = conn.createStatement();
-            
             String sql = "SELECT NAME FROM db_user";
-            
             ResultSet rs = st.executeQuery(sql);
             
             while(rs.next()){
                 String name = rs.getString("NAME");
                 
                 String tbData[] = {name};
-                DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-                model.addRow(tbData);
+                DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+                model1.addRow(tbData);
             }
             conn.close();
             
