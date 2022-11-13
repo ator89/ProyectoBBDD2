@@ -14,12 +14,12 @@ public class ConnectionDB {
 		}
 	}
 
-	public static CUBRIDConnection getCUBRIDConnection(String dbuser, String password) {
+	public static CUBRIDConnection getCUBRIDConnection(String database, String port, String dbuser, String password) {
 		Connection conn = null;
 
 		try {
 			conn = DriverManager.getConnection(
-                                "jdbc:cubrid:localhost:30000:testing01:::?charset=UTF-8", 
+                                "jdbc:cubrid:localhost:"+port+":"+database+":::?charset=UTF-8", 
                                 dbuser, password);
 			System.out.println("Connected!");
 		} catch ( Exception e ) {

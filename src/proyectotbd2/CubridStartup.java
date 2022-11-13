@@ -15,7 +15,7 @@ public class CubridStartup {
         System.out.println("Ingrese password DB: ");
         String passwordDBUsr = sc.next();
         
-        CUBRIDConnection conn = ConnectionDB.getCUBRIDConnection(usuarioDB,passwordDBUsr);
+        CUBRIDConnection conn = ConnectionDB.getCUBRIDConnection("testing01","30000",usuarioDB,passwordDBUsr);
         
         System.out.println("Ingrese id: ");
         int id_usuario = sc.nextInt();
